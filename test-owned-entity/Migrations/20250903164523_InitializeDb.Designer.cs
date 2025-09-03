@@ -12,7 +12,7 @@ using test_owned_entity;
 namespace test_owned_entity.Migrations
 {
     [DbContext(typeof(OrderContext))]
-    [Migration("20250903161959_InitializeDb")]
+    [Migration("20250903164523_InitializeDb")]
     partial class InitializeDb
     {
         /// <inheritdoc />
@@ -29,7 +29,8 @@ namespace test_owned_entity.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("OrderId");
 
                     b.HasKey("Id")
                         .HasName("PK_Order");

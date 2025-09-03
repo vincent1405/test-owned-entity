@@ -26,7 +26,8 @@ namespace test_owned_entity.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("OrderId");
 
                     b.HasKey("Id")
                         .HasName("PK_Order");

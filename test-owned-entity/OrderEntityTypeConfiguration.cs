@@ -9,11 +9,15 @@ namespace test_owned_entity
         {
             builder.ToTable(nameof(Order));
             builder.HasKey(o => o.Id).HasName($"PK_{nameof(Order)}");
-
+            builder.Property(o => o.Id).HasColumnName($"{nameof(Order)}Id");
             builder.OwnsMany(builder => builder.Items, itemBuilder =>
             {
                 itemBuilder.ToTable(nameof(OrderItem));
                 itemBuilder.HasKey(item => new { item.OrderId, item.RowIdx }).HasName($"PK_{nameof(OrderItem)}");
+                // Add this row to prevent the migration to declare the column as IDENTITY
+
+                //itemBuilder.Property(item => item.RowIdx).ValueGeneratedNever();
+
                 itemBuilder.Property(oi => oi.ArticleId).IsRequired();
                 itemBuilder.Property(oi => oi.Quantity).IsRequired();
 
